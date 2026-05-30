@@ -2,6 +2,7 @@ import jwt, { type SignOptions } from "jsonwebtoken";
 import { db } from "../database.js";
 import bcrypt from "bcrypt";
 import { authConfig } from "../config/AuthConfig.js";
+import { HttpError } from "../errors/HttpError.js";
 
 type User = {
   id: number;
@@ -19,12 +20,12 @@ export const login = async (email: string, password: string) => {
 
   const user = (rows as User[])[0];
   if (!user) {
-    throw new Error("Email ou Senha inválida");
+    throw new HttpError(401, "Email ou Senha inválida");
   }
 
   const valid = await bcrypt.compare(password, user.password);
   if (!valid) {
-    throw new Error("Email ou Senha inválida");
+    throw new HttpError(401, "Email ou Senha inválida");
   }
 
   const options: SignOptions = {

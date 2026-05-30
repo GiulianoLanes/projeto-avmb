@@ -5,7 +5,7 @@ import { requireRole } from "../middlewares/RoleMiddleware.js";
 
 const router = Router();
 
-router.get("/", requireAuth, getUsers);
-router.post("/", requireAuth, createUser);
+router.get("/", requireAuth, requireRole('admin'), getUsers);
+router.post("/", requireAuth, requireRole('admin'), createUser);
 
 export default router;

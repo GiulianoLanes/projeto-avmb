@@ -3,7 +3,7 @@ import type { JwtPayload } from "jsonwebtoken";
 
 export function requireRole(...roles: ("user" | "admin")[]) {
   return (
-    req: Request & { user: JwtPayload },
+    req: Request,
     res: Response,
     next: NextFunction,
   ) => {
