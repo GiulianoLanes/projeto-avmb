@@ -11,12 +11,11 @@ export default function LoginPage() {
     e.preventDefault();
 
     try {
-      const data = await signIn(email, password)
-      console.log(data)
+      const data = await signIn(email, password);
+      console.log(data);
     } catch (error) {
-      alert((error as Error).message || 'Falha ao fazer login')
+      alert((error as Error).message || "Falha ao fazer login");
     }
-    
   };
 
   return (
