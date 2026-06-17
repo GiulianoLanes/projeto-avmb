@@ -1,6 +1,8 @@
 import App from "@/App";
 import LoginPage from "@/pages/PublicPages/LoginPage";
+import RegisterPage from "@/pages/PublicPages/RegisterPage";
 import { createBrowserRouter } from "react-router";
+import { todoRoutes } from "./todoRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -11,6 +13,16 @@ export const router = createBrowserRouter([
         index: true,
         element: <LoginPage />,
       },
+      {
+        path:'/register',
+        element: <RegisterPage />
+      },
+      {
+        path:'/',
+        children: [todoRoutes],
+      }
     ],
   },
 ]);
+
+
